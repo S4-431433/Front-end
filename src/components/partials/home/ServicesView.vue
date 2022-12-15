@@ -2,9 +2,7 @@
     <div>
         <b-row class="services">
             <div class="split left">
-                <img height="520"
-                        max-width="100%"
-                        src="./Quote.jpg" border="0"/>
+                <img src="./Quote.jpg" border="0" class="image"/>
             </div>
 
             <div class="split right">
@@ -53,6 +51,11 @@
   }</script>
 
 <style scoped>
+
+    .image {
+        max-height: 520px;
+        width: 101.3%;
+    }
     .services{
         width:100.65% !important;
         height: 520px;

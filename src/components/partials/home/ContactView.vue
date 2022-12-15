@@ -2,7 +2,7 @@
     <div>
         <b-row no-gutters class="contact">
             <div class="split left">
-                <h1 style="margin-top: 40px;">Kom kennis maken</h1>
+                <h1 style="margin-top: 40px;">Kom kennismaken</h1>
                 <div>
                     <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="form">
 
@@ -48,7 +48,7 @@
             </div>
 
             <div class="split right">
-
+                <img src="./class.jpg" border="0" class="image" />
             </div>
         </b-row>
     </div>
@@ -90,6 +90,12 @@
 </script>
 
 <style scoped>
+    .image {
+        max-height: 600px;
+        width: 103%;
+        margin-left: -13px;
+    }
+
     .contact {
         width: 100.65% !important;
         height: 600px;
