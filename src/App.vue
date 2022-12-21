@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <TopBar class="bar" />
+        <TopBar class="hide"/>
         <main>
             <router-view />
         </main>
@@ -25,5 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   overflow: hidden;
+}
+
+.hide{
+    visibility: visible;
 }
 </style>

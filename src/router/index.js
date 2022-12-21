@@ -1,24 +1,45 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import DashboardView from '../views/DashboardView.vue';
+import AdminView from '../components/partials/admin/AdminView.vue';
+import UserView from '../components/partials/admin/UserView.vue';
+import HomeView from '../views/HomeView.vue';
+import AccountView from '../views/AccountView.vue';
+import PersonalTrainingView from '../views/PersonalTrainingView.vue';
+
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
+    {
         path: '/',
         name: 'home',
         component: HomeView
-  },
-  {
-        path: '/about',
-        name: 'about',
-        component: () => import('../views/AboutView.vue')
     },
     {
         path: '/account',
         name: 'account',
-        component: () => import('../views/AccountView.vue')
+        component: AccountView  
+    },
+    {
+        path: '/pt',
+        name: 'pt',
+        component: PersonalTrainingView
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: DashboardView
+    },
+    {
+        path: '/admin',
+        name: 'amin',
+        component: AdminView
+    },
+    {
+        path: '/admin/users',
+        name: 'users',
+        component: UserView
     }
 ]
 

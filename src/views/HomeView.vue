@@ -24,3 +24,9 @@
     },
   }
 </script>
+
+<style>
+    .hide{
+        visibility: visible !important;
+    }
+</style>

@@ -13,6 +13,7 @@
                 </b-col>
             </b-row>
         </b-container>
+
         <b-container>
             <b-row>
                 <b-col class="bottom">
@@ -21,7 +22,7 @@
                             7 dagen gratis
                         </h2>
                         <h5>Altijd bij Body Movement</h5>
-                        <b-button variant="dark">Details</b-button>
+                        <p class="style">Get the <a href="#" data-replace="details"><span>details</span></a></p>
                     </div>
                 </b-col>
                 <b-col class="bottom">
@@ -29,7 +30,7 @@
                         'MORE'vember
                     </h2>
                     <h5 class="pretty">za 1 okt tot ma 31 okt</h5>
-                    <b-button variant="dark">Details</b-button>
+                    <p class="style">Get the <a href="#" data-replace="details"><span>details</span></a></p>
                 </b-col>
             </b-row>
         </b-container>
@@ -46,7 +47,68 @@
     }
 </script>
 
-<style>
+<style scoped>
+    a {
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        color: rebeccapurple;
+        text-decoration: none;
+        font-weight: 700;
+        vertical-align: top;
+    }
+
+    .style {
+        place-items: center;
+    }
+
+        a::before,
+        a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            left: 0;
+        }
+
+        a::before {
+            background-color: mediumpurple;
+            height: 2px;
+            bottom: 0;
+            transform-origin: 100% 50%;
+            transform: scaleX(0);
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        a::after {
+            content: attr(data-replace);
+            height: 100%;
+            top: 0;
+            transform-origin: 100% 50%;
+            transform: translate3d(200%, 0, 0);
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+            color: mediumpurple;
+        }
+
+        a:hover::before {
+            transform-origin: 0% 50%;
+            transform: scaleX(1);
+        }
+
+        a:hover::after {
+            transform: translate3d(0, 0, 0);
+        }
+
+        a span {
+            display: inline-block;
+            transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        a:hover span {
+            transform: translate3d(-200%, 0, 0);
+        }
+
+
+
     .background{
         background-color: #181818;
         color: white;
@@ -84,6 +146,23 @@
     .bottom:hover {
         height: 700px !important;
         top: -500px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .bottom {
+            max-width: 190px !important;
+            margin-left: 3.5% !important;
+            margin-right: 3.3% !important;
+        }
+            .bottom:hover {
+                height: 660px !important;
+                top: -460px;
+            }
+
+        .card{
+            margin: 15px;
+        }
+
     }
 
 </style>
