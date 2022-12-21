@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import DashboardView from '../views/DashboardView.vue';
 import AdminView from '../components/partials/admin/AdminView.vue';
 import UserView from '../components/partials/admin/UserView.vue';
+import ProductView from '../components/partials/admin/ProductView.vue';
+import TrainersView from '../components/partials/admin/TrainersView.vue';
 import HomeView from '../views/HomeView.vue';
 import AccountView from '../views/AccountView.vue';
 import PersonalTrainingView from '../views/PersonalTrainingView.vue';
@@ -40,6 +42,21 @@ const routes = [
         path: '/admin/users',
         name: 'users',
         component: UserView
+    },
+    {
+        path: '/admin/users/new',
+        name: 'new-user',
+        component: () => import('../components/partials/admin/CreateUser.vue'),
+    },
+    {
+        path: '/admin/trainers',
+        name: 'trainer',
+        component: TrainersView
+    },
+    {
+        path: '/admin/products',
+        name: 'products',
+        component: ProductView
     }
 ]
 

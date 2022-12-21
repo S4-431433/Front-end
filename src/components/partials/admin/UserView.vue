@@ -54,14 +54,14 @@
         data() {
             return {
                 users: [
-                    { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald', status: 'active'}],
+                    { isActive: true, age: 35, first_name: 'John', last_name: 'Doe', status: 'active'}],
                 fields: [
                     {
-                        key: 'last_name',
+                        key: 'first_name',
                         sortable: false
                     },
                     {
-                        key: 'first_name',
+                        key: 'last_name',
                         sortable: false
                     },
                     {

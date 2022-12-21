@@ -5,7 +5,7 @@
         <div>
             <b-row> 
                 <b-col class="graph">
-                    <h3>Nog maar 3 Kilo te gaan!'</h3>
+                    <h3>Nog maar 3 Kilo te gaan!</h3>
                     <GraphView />
                 </b-col>
             </b-row>
