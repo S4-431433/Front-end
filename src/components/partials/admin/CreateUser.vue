@@ -52,7 +52,14 @@
                         <b-form-input id="bmr" v-model="weight.bmr" placeholder="Vul het basaal metabolisme in" required class="form-margins"></b-form-input>
 
                         <br />
-                        <b-button v-b-modal.goal>Goal</b-button>
+                        <b-row>
+                            <b-col cols="7">
+                                <b-button variant="outline-danger" style="position: initial" to="/admin/users">terug</b-button>
+                            </b-col>
+                            <b-col>
+                                <b-button v-b-modal.goal style="position: initial;">Goal</b-button>
+                            </b-col>
+                        </b-row>
                     </b-form>
                 </b-col>
             </b-row>
@@ -99,6 +106,10 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    import Vue from 'vue';
+    Vue.use(axios)
+
     export default {
         name: 'CreateUser',
         data() {
@@ -127,7 +138,8 @@
                     muscle: '',
                     fluid: '',
                 },
-                pt: [{ text: 'Selecteer een trainer', value: null }, 'Jenson van Geel'],
+                pt: [],
+                shortSave: [],
                 show: true,
             }
         },
@@ -146,6 +158,14 @@
                 }
                 this.form.age = age.toString();
             }
+        },
+        mounted() {
+            axios
+                .get('https://localhost:44349/pt/GetAll')
+                .then(response => {
+                    response.data.forEach(element => this.shortSave.push(element.name))
+                    this.pt = [{ text: 'Selecteer een trainer', value: null }, this.shortSave]
+                })
         }
 
     }

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import VueApexCharts from 'vue-apexcharts'
 
     export default {
@@ -14,13 +15,7 @@
         },
         data() {
             return {
-                series: [{
-                    name: 'non-actief',
-                    data: [0, 3, 1, 7, 9, 10, 3, 4]
-                }, {
-                    name: 'actief',
-                    data: [11, 32, 45, 32, 54, 48, 51, 52]
-                }],
+                series: [],
                 chartOptions: {
                     chart: {
                         height: 350,
@@ -58,6 +53,21 @@
                     }
                 }
             }
+        },
+        mounted() {
+            axios
+                .get('https://localhost:44349/account/GetActiveUsers')
+                .then(response => {
+                    this.series = [{
+                        name: 'actief',
+                        data: [4, response.data[0]]
+                    },
+                        {
+                            name: 'non-actief',
+                            data: [2, response.data[1]]
+                        }]
+                    console.log(this.series)
+                })
         }
     }
 </script>

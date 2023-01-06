@@ -24,22 +24,20 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    import Vue from 'vue';
+    Vue.use(axios)
+
     export default {
         name: 'TrainersView',
         data() {
             return {
                 trainers: [
-                    { age: 20, first_name: 'Jenson', last_name: 'van Geel', mail: 'jensonvangeel@gmail.com', number: '06-36567820' }
                 ],
                 fields: [
                     {
-                        key: 'first_name',
+                        key: 'name',
                         label: 'Voornaam',
-                        sortable: false
-                    },
-                    {
-                        key: 'last_name',
-                        label: 'Achternaam',
                         sortable: false
                     },
                     {
@@ -48,7 +46,12 @@
                         sortable: false,
                     },
                     {
-                        key: 'mail',
+                        key: 'department',
+                        label: 'Afdeling',
+                        sortable: false,
+                    },
+                    {
+                        key: 'email',
                         label: 'E-mail',
                         sortable: false,
                     },
@@ -59,6 +62,13 @@
                     }
                 ],
             }
+        },
+        mounted() {
+            axios
+                .get('https://localhost:44349/pt/GetAll')
+                .then(response => {
+                    this.trainers = response.data
+                })
         }
     }
 </script>

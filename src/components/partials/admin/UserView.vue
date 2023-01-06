@@ -1,7 +1,17 @@
 <template>
     <div>
 
-        <h1 style="margin-top: 3vh;">Gebruikers overzicht</h1>
+        
+        <b-row>
+            <b-col cols="11">
+                <h1 style="margin-top: 3vh;">Gebruikers overzicht</h1>
+
+            </b-col>
+            <b-col cols="1">
+                <b-button class="button" variant="outline-success" to="/admin/users/new">Nieuw</b-button>
+
+            </b-col>
+        </b-row>
         <b-row>
             <b-col>
                 <div class="users">
@@ -14,7 +24,7 @@
                         <div class="content">
                             <div>
                                 <div class="table">
-                                    <b-table :items="users" :fields="fields" class="table" :tbody-tr-class="rowClass"></b-table>
+                                    <b-table :items="userlist" :fields="fields" class="table" :tbody-tr-class="rowClass"></b-table>
                                 </div>
                             </div>
                         </div>
@@ -46,6 +56,10 @@
 <script>
     import UserChart from './UserChart.vue'
 
+    import axios from 'axios';
+    import Vue from 'vue';
+    Vue.use(axios)
+
     export default {
         name: 'UserView',
         components: {
@@ -53,15 +67,14 @@
         },
         data() {
             return {
-                users: [
-                    { isActive: true, age: 35, first_name: 'John', last_name: 'Doe', status: 'active'}],
+                userlist: [],
                 fields: [
                     {
-                        key: 'first_name',
+                        key: 'forename',
                         sortable: false
                     },
                     {
-                        key: 'last_name',
+                        key: 'lastname',
                         sortable: false
                     },
                     {
@@ -73,13 +86,18 @@
             }
         },
         mounted() {
-            //axios call
+                axios
+                    .get('https://localhost:44349/account/GetAllUsers')
+                    .then(response => {
+                        this.userlist = response.data
+                        console.log(this.userlist)
+                    })
         },
         methods: {
             rowClass(item, type) {
                 if (!item || type !== 'row') return 
-                if (item.status === 'active') return 'table-success'
-                if (item.status === 'non-active') return 'table-danger'
+                if (item.active === 'true') return 'table-success'
+                if (item.active === 'false') return 'table-danger'
             }
         },
     }
@@ -149,5 +167,11 @@
         margin-top: 1vh;
         border-radius: 5px;
         max-height: 55vh;
+    }
+
+    .button{
+        margin-top: 10vh;
+        margin-right: 5vh;
+        position: relative;
     }
 </style>

@@ -15,6 +15,10 @@
 </template>
 
 <script>
+    import axios from 'axios'
+    import Vue from 'vue'
+    Vue.use(axios)
+
     export default {
         name: 'ProductView',
         data() {
@@ -26,8 +30,12 @@
         },
 
         mounted() {
-            //axios call
-        }
+            axios
+                .get('https://localhost:44349/account/GetAllUsers')
+                .then(response => {
+                    response.forEach(data => this.impacts.push(data))
+                })
+        },
     }
 </script>
 
