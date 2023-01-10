@@ -60,11 +60,11 @@
                 .then(response => {
                     this.series = [{
                         name: 'actief',
-                        data: [4, response.data[0]]
+                        data: [2, 4, response.data[0]]
                     },
                         {
                             name: 'non-actief',
-                            data: [2, response.data[1]]
+                            data: [0, 2, response.data[1]]
                         }]
                     console.log(this.series)
                 })
