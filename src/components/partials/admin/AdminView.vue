@@ -7,29 +7,28 @@
                 <b-col sm>
                     <b-card>
                         <h4>Gebruikers</h4>
-                        <h2 class="text-right">271</h2>
+                        <h2 class="text-right">{{userCount}}</h2>
                     </b-card>
                 </b-col>
                 <b-col sm>
                     <b-card>
                         <h4>Trainers</h4>
-                        <h2 class="text-right">8</h2>
+                        <h2 class="text-right">{{trainerCount}}</h2>
                     </b-card>
                 </b-col>
                 <b-col sm>
                     <b-card>
                         <h4>Producten</h4>
-                        <h2 class="text-right">31</h2>
+                        <h2 class="text-right">{{productCount}}</h2>
                     </b-card>
                 </b-col>
                 <b-col sm>
                     <b-card>
                         <h4>Omzet</h4>
-                        <h2 class="text-right">$ 203</h2>
+                        <h2 class="text-right">$ {{revenue}}</h2>
                     </b-card>
                 </b-col>
             </b-row>
-
             <b-row class="second">
                 <b-col cols="7">
                     <b-row class="top-3">
@@ -49,12 +48,10 @@
                         </b-col>
                     </b-row>
                 </b-col>
-
                 <b-col cols="5">
                     <ProductChart class="chart"/>
                 </b-col>
             </b-row>
-        
             <b-row class="update">
                 <h2 style="margin-bottom: 3vh">Update data</h2>
                 <b-col sm class="animate">
@@ -76,11 +73,12 @@
         </b-container>
     </div>
 </template>
-
 <script>
     import VueApexCharts from 'vue-apexcharts'
     import ProductChart from './ProductChart.vue'
-
+    import axios from 'axios';
+    import Vue from 'vue';
+    Vue.use(axios)
     export default {
         name: 'AdminView',
         components: {
@@ -89,6 +87,11 @@
         },
         data() {
             return {
+                topData: [],
+                userCount: null,
+                trainerCount: null,
+                productCount: null,
+                revenue: null,
                 series: [5, 8, 11],
                 chartOptions: {
                     chart: {
@@ -113,59 +116,60 @@
                 },
             }
         },
+        mounted() {
+            axios
+                .get('https://localhost:44349/admin/GetTopData')
+                .then(response => {
+                    this.topData = response.data
+                    this.userCount = this.topData[0]
+                    this.trainerCount = this.topData[1]
+                    this.productCount = this.topData[2]
+                    this.revenue = this.topData[3]
+                })
+        }
     }
 </script>
-
 <style scoped>
     .min-height{
         min-height: calc(100vh - 130px)
     }
-
     .content-wrapper{
         padding: 25px 30px;
     }
-
     .container-fluid {
         width: 100%;
         margin-right: auto;
         margin-left: auto;
         background-color: #2600c412;
     }
-
     .text-right{
         text-align: right;
         margin-right: 15%;
     }
-
     .second {
         align-content: start;
         text-align: left;
         margin-top: 5vh;
     }
-
     .top-3 {
         background-color: white;
         padding: 25px 30px;
         border-radius: 10px;
     }
-
     .stats-top{
         max-width: 35%;
     }
-
     .chart {
         background-color: white;
         padding: 11px 20px;
         border-radius: 10px;
     }
-
     .update {
         color: black;
         padding: 11px 20px;
         margin-top: 5vh;
         text-align: left;
     }
-
     .animate {
         --g: 5px; /* the gap */
         --b: 6px; /* border thickness*/
@@ -192,19 +196,15 @@
         border-radius: 10px;
         border-radius: 10px;
     }
-
     .animate:hover {
         --_p: 75%;
         filter: grayscale(0%);
     }
-
     .body{
         background-color: white;
     }
-
     .link{
         color: black;
         text-decoration-color: black !important;
     }
-        
 </style>

@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1>Overzicht</h1>
+        <h1 style="margin-top: 3vh">Overzicht</h1>
 
         <div>
-            <b-row> 
+            <b-row>
                 <b-col class="graph">
                     <h3>Nog maar 3 Kilo te gaan!</h3>
                     <GraphView />
@@ -20,18 +20,18 @@
 
                 <b-col sm class="pt">
                     <h3>Personal Trainer</h3>
-                    <PtDetailsView/>
+                    <PtDetailsView />
                 </b-col>
             </b-row>
         </div>
 
-        <div>
+        <!--<div>
             <b-row>
                 <b-col class="orders">
                     <h3>Bestellingen</h3>
                 </b-col>
             </b-row>
-        </div>
+        </div>-->
     </div>
 </template>
 
@@ -87,6 +87,11 @@
         border-radius: 10px;
         margin: 20px;
     }
+
+    .hide {
+        visibility: hidden !important;
+    }
+
 
     @media only screen and (max-width: 600px) {
         .subscription{

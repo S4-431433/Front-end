@@ -62,6 +62,11 @@ const routes = [
         path: '/admin/products/:id',
         name: 'edit_product',
         component: () => import('../components/partials/admin/EditProduct.vue'),
+    },
+    {
+        path: '/contact',
+        name: 'contact',
+        component: () => import('../components/partials/ContactView.vue'),
     }
 ]
 

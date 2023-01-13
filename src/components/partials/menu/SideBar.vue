@@ -51,7 +51,7 @@
   data() {
     return {
       initialShow: true,
-      header: '<h3>Welcome</h3> <h2>John Doe</h2>',
+      header: '<h3>Welcome</h3> <h2>Jane Doe</h2>',
       links: [
         { name: "Home", href: { name: "home" }, faIcon: ["fas", "home"] },
         {

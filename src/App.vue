@@ -28,6 +28,6 @@
 }
 
 .hide{
-    visibility: visible;
+    visibility: visible !important;
 }
 </style>

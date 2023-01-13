@@ -32,12 +32,11 @@
         name: 'TrainersView',
         data() {
             return {
-                trainers: [
-                ],
+                trainers: [],
                 fields: [
                     {
                         key: 'name',
-                        label: 'Voornaam',
+                        label: 'Naam',
                         sortable: false
                     },
                     {
