@@ -67,6 +67,11 @@ const routes = [
         path: '/contact',
         name: 'contact',
         component: () => import('../components/partials/ContactView.vue'),
+    },
+    {
+        path: '/winkel',
+        name: 'shop',
+        component: () => import('../components/partials/shop/ShopTopView.vue'),
     }
 ]
 
